@@ -2,7 +2,7 @@
 import type { ComparisonResult } from '../domain/comparison';
 import type { PassageResult } from '../domain/passage';
 import { formatLength, type Unit } from '../domain/units';
-import { AXIS_LABEL, CAUTION_TEXT, CLEARANCE_TEXT, REVIEW_REASON_TEXT, SEGMENT_REASON_TEXT } from '../screens/labels';
+import { AXIS_LABEL, CAUTION_TEXT, CLEARANCE_TEXT, FRONT_REASON_TEXT, REVIEW_REASON_TEXT, SEGMENT_REASON_TEXT } from '../screens/labels';
 import { Icon } from './Icon';
 import { Notice, OriginBadge, StatusBadge } from './ui';
 
@@ -45,7 +45,7 @@ export function ResultView({ result, passage, unit }: { result: ComparisonResult
               <ul className="axis-reasons">
                 {a.reasons.map((r) => (
                   <li key={r}>
-                    {REVIEW_REASON_TEXT[r]}
+                    {a.axis === 'frontSpace' ? FRONT_REASON_TEXT[r] : REVIEW_REASON_TEXT[r]}
                     {r === 'CLEARANCE_UNKNOWN' && ` (${a.unknownClearances.map((k) => CLEARANCE_TEXT[k]).join('·')})`}
                   </li>
                 ))}

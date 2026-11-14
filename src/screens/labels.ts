@@ -20,6 +20,13 @@ export const REVIEW_REASON_TEXT: Record<ReviewReason, string> = {
   CLEARANCE_UNKNOWN: '제조사 설치 여유를 확인하지 않았어요',
 };
 
+/** 문 여는 공간 축은 '치수'가 아니라 개방 거리라 문구를 따로 둔다 */
+export const FRONT_REASON_TEXT: Record<ReviewReason, string> = {
+  SPACE_MISSING: '자리 앞쪽 빈 공간을 재지 않았어요',
+  PRODUCT_MISSING: '제품의 문·서랍 여는 거리를 확인하지 않았어요',
+  CLEARANCE_UNKNOWN: '제조사 설치 여유를 확인하지 않았어요',
+};
+
 export const CLEARANCE_TEXT = { left: '왼쪽', right: '오른쪽', rear: '뒤쪽', top: '위쪽' } as const;
 
 export const CAUTION_TEXT: Record<Caution, string> = {

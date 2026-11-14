@@ -96,7 +96,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       return false;
     }
     photoCache.current.clear();
-    const next: AppState = { ...emptyState(), onboarded: true };
+    // 기록만 지우고 표시 단위 같은 환경 설정은 유지한다
+    const next: AppState = { ...emptyState(), onboarded: true, storageNoticeSeen: ref.current.storageNoticeSeen, displayUnit: ref.current.displayUnit };
     ref.current = next;
     setState(next);
     try {
