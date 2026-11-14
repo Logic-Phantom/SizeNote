@@ -92,6 +92,7 @@ button.row:active { background: var(--c-surface-2); }
 /* ── 홈 ── */
 .home-head { display: flex; align-items: center; justify-content: space-between; height: 56px; }
 .brand { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 800; color: var(--c-primary-strong); }
+.brand img { border-radius: 9px; box-shadow: var(--shadow-card); }
 .home-hero { padding: 6px 0 4px; }
 .home-hero h2 { font-size: 24px; font-weight: 800; line-height: 1.38; letter-spacing: -0.4px; }
 .home-hero p { margin-top: 8px; color: var(--c-text-3); font-size: 14px; }

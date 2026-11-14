@@ -18,6 +18,7 @@ npm run dev        # 브라우저 미리보기 (토스 SDK 대신 localStorage·
 npm test           # 단위 테스트
 npm run build      # 라이선스 목록 + 타입체크 + 빌드
 npm run build:ait  # 콘솔 업로드용 sizenote.ait
+npm run icons      # 시안에서 아이콘 세트 다시 생성(Python + Pillow)
 ```
 
 ## 프로젝트 구조
@@ -32,6 +33,9 @@ src/
   components/  ui.tsx, forms.tsx(길이·설치 여유 입력), ResultView.tsx(판정 표시), PhotoMeasure.tsx(사진 보조 측정), overlay.tsx, Icon.tsx
   screens/     Home, SpaceEditor, SpaceDetail, MeasurementEditor, Products, Compare, History, HistoryDetail, Passages, Settings
   styles/      design-tokens.css(웜 우드 톤), app.css
+assets/brand/  콘솔 업로드용 아이콘(console-icon-600.png)
+public/        favicon.png, brand/logo.png, brand/og-image.png
+scripts/       generate-oss-licenses.mjs, build-app-icons.py
 tests/         units, comparison, passage, photo-measure, repository
 docs/          SUPER_PROMPT, DECISIONS, ARCHITECTURE, design/
 ```
@@ -56,15 +60,16 @@ docs/          SUPER_PROMPT, DECISIONS, ARCHITECTURE, design/
 | 비교 기록 목록·상세(스냅샷)·다시 비교·삭제 | 자동 테스트 통과 · 브라우저 확인(상세) | 측정값을 고친 뒤에도 과거 결과 유지 확인 |
 | 반입 경로 구간 추가·수정·삭제, 단순 선별 | 자동 테스트 통과 · 브라우저 확인(추가) | |
 | 설정(표시 단위, 전체 삭제) | 구현 | |
+| 브랜드 아이콘(콘솔 600px·앱 안 로고·파비콘·OG) | 구현 · 브라우저 확인(홈 로고·파비콘) | 시안 그림을 떼어 사용, 600px 확대라 약간 부드러움. 콘솔 업로드 전 |
 
 ## 다음 할 일
 
-1. **브랜드 아이콘**: 시안에서 잘라 600×600 콘솔 아이콘·파비콘·앱 안 로고 생성(`scripts/build-app-icons.py` 방식)
-2. **샌드박스·실기기 확인**: iOS·Android에서 Storage 유지(앱 종료 후 재진입), 카메라·앨범 권한 흐름(거부 포함), 사진 저장 용량·재진입 표시, 키보드·Safe Area
-3. **사진 측정 오차 측정**: 줄자 대비 오차를 실사진으로 기록해 안내 문구 근거 마련(검증 전에는 오차 수치 표시 금지)
-4. 남은 브라우저 확인: 공간·측정 수정/삭제/복사, 후보 3개 비교, 경로 포함 비교, 설정 단위 전환·전체 삭제
-5. 비교 화면 진입 시 측정 대상 고르기를 카드형으로 개선(현재 기본 select), 사진 여러 장일 때 사진 측정에서 사진 고르기
-6. 출시 문서: `docs/RELEASE_CHECKLIST.md`, 개인정보·저장 안내, 오픈소스 라이선스 화면, 콘솔 appName 확정
+1. **샌드박스·실기기 확인**: iOS·Android에서 Storage 유지(앱 종료 후 재진입), 카메라·앨범 권한 흐름(거부 포함), 사진 저장 용량·재진입 표시, 키보드·Safe Area
+2. **사진 측정 오차 측정**: 줄자 대비 오차를 실사진으로 기록해 안내 문구 근거 마련(검증 전에는 오차 수치 표시 금지)
+3. 남은 브라우저 확인: 공간·측정 수정/삭제/복사, 후보 3개 비교, 경로 포함 비교, 설정 단위 전환·전체 삭제
+4. 비교 화면 진입 시 측정 대상 고르기를 카드형으로 개선(현재 기본 select), 사진 여러 장일 때 사진 측정에서 사진 고르기
+5. 출시 문서: `docs/RELEASE_CHECKLIST.md`, 개인정보·저장 안내, 오픈소스 라이선스 화면, 콘솔 appName 확정 후 `assets/brand/console-icon-600.png` 업로드
+6. (선택) 고해상도 아이콘 원본을 받으면 `scripts/build-app-icons.py`의 소스·`ART_BOX`만 바꿔 `npm run icons`로 다시 생성
 
 ## Work Log
 
@@ -82,3 +87,9 @@ docs/          SUPER_PROMPT, DECISIONS, ARCHITECTURE, design/
 - 비교 화면(측정 대상 1개 × 후보 최대 3개, 반입 경로 본체/포장·통과 방향), 결과 표시(축별 공간·필요 치수·남는 공간·미확인 사유·주의), 비교 기록 저장
 - 비교 탭(비교 시작·제품·반입 경로 바로가기·기록 목록), 기록 상세(스냅샷·다시 비교·삭제), 반입 경로 구간 목록·편집
 - 검증: `npm test` 42/42, `npm run typecheck` 통과, `npm run build` 성공. 브라우저 미리보기(375×812)에서 공간 → 측정 → 제품 → 비교 → 저장 → 기록 상세, 사진 보조 측정(합성 이미지) → 치수 적용 → 저장, 경로 구간 추가 확인. 토스 샌드박스·실기기는 미확인
+
+### 2026-11-14 — 브랜드 아이콘
+- 사용자 시안(`docs/design/reference-2.webp`) 왼쪽 위 아이콘의 집 + 줄자 그림을 그대로 떼어(채도로 오려 그림자·바탕 경계 제거) 크림 바탕에 다시 배치하는 `scripts/build-app-icons.py` 추가(`npm run icons`)
+- 산출: `assets/brand/console-icon-600.png`(콘솔용 600×600, 모서리 직각), `icon-source.png`(1024), `public/brand/logo.png`(앱 안 로고), `public/favicon.png`, `public/brand/og-image.png`
+- 홈 상단 브랜드에 로고 이미지 적용, `index.html`에 파비콘·OG 메타 추가, 결정 D-022 기록
+- 검증: 빌드 성공(dist에 아이콘 포함), 브라우저 미리보기에서 홈 로고·파비콘 로드 확인. 콘솔 업로드는 하지 않음

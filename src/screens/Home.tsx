@@ -16,7 +16,7 @@ export function Home() {
     <Screen tabbar>
       <div className="home-head">
         <span className="brand">
-          <Icon name="ruler" size={22} />
+          <img src="./brand/logo.png" alt="" width={32} height={32} />
           사이즈 어때?
         </span>
       </div>

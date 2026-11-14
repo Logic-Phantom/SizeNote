@@ -8,6 +8,7 @@
     "build": "npm run licenses && tsc --noEmit && vite build",
     "build:ait": "npm run build && ait build",
     "licenses": "node scripts/generate-oss-licenses.mjs",
+    "icons": "python scripts/build-app-icons.py",
     "preview": "vite preview",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
