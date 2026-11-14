@@ -209,11 +209,11 @@ export function PhotoMeasure({
                   </p>
                 </details>
                 {calc.warnings.map((w) => (
-                  <Notice key={w} tone="warn" icon="alert">
+                  <Notice key={w} tone="warn" icon="info">
                     {PHOTO_WARNING_TEXT[w]}
                   </Notice>
                 ))}
-                <Notice tone="warn" icon="alert">
+                <Notice tone="warn" icon="info">
                   사진으로 계산한 값은 줄자로 한 번 더 확인해 주세요. 사진에서 보이지 않는 깊이·뒤쪽은 잴 수 없어요.
                 </Notice>
                 <Field label="어느 치수에 넣을까요?">

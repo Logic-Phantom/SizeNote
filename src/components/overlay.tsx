@@ -49,7 +49,7 @@ export function OverlayProvider({ children }: { children: ReactNode }) {
             {dialog.message && <p>{dialog.message}</p>}
             <div className="dialog-actions">
               <button type="button" className="btn btn-soft" onClick={() => close(false)}>
-                {dialog.cancelText ?? '취소'}
+                {dialog.cancelText ?? '닫기'}
               </button>
               <button type="button" className={`btn ${dialog.danger ? 'btn-danger-solid' : 'btn-primary'}`} onClick={() => close(true)} autoFocus>
                 {dialog.confirmText ?? '확인'}

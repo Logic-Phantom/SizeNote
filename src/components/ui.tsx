@@ -145,7 +145,7 @@ export const STATUS_TEXT: Record<FitStatus, string> = {
   OVER: '규격 초과',
   REVIEW: '추가 확인 필요',
 };
-const STATUS_ICON: Record<FitStatus, IconName> = { FIT: 'check', OVER: 'x', REVIEW: 'alert' };
+const STATUS_ICON: Record<FitStatus, IconName> = { FIT: 'check', OVER: 'x', REVIEW: 'help' };
 
 export function StatusBadge({ status }: { status: FitStatus }) {
   return (

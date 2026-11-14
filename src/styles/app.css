@@ -13,7 +13,7 @@ img { display: block; }
 /* ── 화면 틀 ── */
 .screen { max-width: 480px; margin: 0 auto; min-height: 100vh; min-height: 100dvh; }
 .screen-body { padding: 0 var(--gutter) 28px; display: flex; flex-direction: column; gap: 14px; }
-.screen.has-tabbar .screen-body { padding-bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 28px); }
+.screen.has-tabbar .screen-body { padding-bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 40px); }
 .screen.has-footer .screen-body { padding-bottom: calc(96px + var(--safe-bottom)); }
 .screen-footer {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; max-width: 480px; margin: 0 auto;
@@ -28,12 +28,12 @@ img { display: block; }
 .icon-btn { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px; color: var(--c-text); }
 .icon-btn:active { background: var(--c-surface-2); }
 
-/* ── 탭바(시안 하단 홈·비교·설정) ── */
+/* ── 탭바: 앱인토스 UX 가이드 — 탭바는 플로팅 형태(토스 메인 하단 탭과 겹치지 않게), 탭 2~5개 ── */
 .tabbar {
-  position: fixed; left: 50%; transform: translateX(-50%); bottom: 0; z-index: 20;
-  width: 100%; max-width: 480px; height: calc(var(--tabbar-h) + var(--safe-bottom)); padding-bottom: var(--safe-bottom);
+  position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(12px + var(--safe-bottom)); z-index: 20;
+  width: calc(100% - 32px); max-width: 448px; height: var(--tabbar-h);
   display: grid; grid-template-columns: repeat(3, 1fr);
-  background: var(--c-surface); border-top: 1px solid var(--c-line); border-radius: 20px 20px 0 0; box-shadow: 0 -4px 20px rgba(80, 60, 40, 0.05);
+  background: var(--c-surface); border: 1px solid var(--c-line); border-radius: 24px; box-shadow: var(--shadow-float);
 }
 .tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: var(--c-text-3); text-decoration: none; font-size: 11px; font-weight: 600; }
 .tab.active { color: var(--c-primary); }
@@ -123,7 +123,8 @@ textarea.input { height: auto; min-height: 88px; padding: 14px 16px; resize: non
 
 /* ── 공통 보조 ── */
 .btn-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+.input { min-width: 0; width: 100%; }
 .sub-title { font-size: 16px; font-weight: 700; margin-top: 6px; }
 .text-btn { color: var(--c-primary-strong); font-weight: 700; font-size: 14px; padding: 8px 4px; white-space: nowrap; }
 .text-btn.inline { padding: 0; font-size: inherit; }
@@ -208,3 +209,14 @@ select.input { appearance: none; background-image: linear-gradient(45deg, transp
 .pm-detail { font-size: 12.5px; color: var(--c-text-3); }
 .pm-detail summary { cursor: pointer; font-weight: 600; }
 .pm-detail p { margin-top: 6px; line-height: 1.5; }
+
+/* ── 설정 하위 문서 ── */
+.doc { display: flex; flex-direction: column; gap: 10px; font-size: 14.5px; line-height: 1.65; color: var(--c-text-2); }
+.doc h2 { font-size: 16px; font-weight: 700; color: var(--c-text); margin-top: 10px; }
+.doc ul { padding-left: 18px; list-style: disc; display: flex; flex-direction: column; gap: 4px; }
+.doc strong { color: var(--c-text); }
+.license-list { list-style: none !important; padding-left: 0 !important; gap: 8px !important; }
+.license-list li { padding: 10px 0; border-bottom: 1px solid var(--c-line); font-size: 13.5px; }
+.crash { padding-top: 80px; text-align: center; align-items: center; }
+.crash h1 { font-size: 20px; }
+.crash p { color: var(--c-text-3); margin-bottom: 12px; }

@@ -56,7 +56,7 @@ export function ResultView({ result, passage, unit }: { result: ComparisonResult
       </div>
 
       {result.cautions.map((c) => (
-        <Notice key={c} tone="warn" icon="alert">
+        <Notice key={c} tone="warn" icon="info">
           {CAUTION_TEXT[c]}
         </Notice>
       ))}
@@ -98,7 +98,7 @@ export function ResultView({ result, passage, unit }: { result: ComparisonResult
 }
 
 function AxisMark({ status }: { status: 'FIT' | 'OVER' | 'REVIEW' }) {
-  const map = { FIT: ['check', '충족'], OVER: ['x', '초과'], REVIEW: ['alert', '확인 필요'] } as const;
+  const map = { FIT: ['check', '충족'], OVER: ['x', '초과'], REVIEW: ['help', '확인 필요'] } as const;
   const [icon, text] = map[status];
   return (
     <span className={`axis-mark mark-${status.toLowerCase()}`}>
