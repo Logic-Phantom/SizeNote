@@ -28,6 +28,11 @@ export function Home() {
         </h2>
         <p>공간 치수를 저장해 두고 사려는 제품과 비교해 보세요.</p>
       </section>
+      {spaces.length > 0 && (
+        <Button icon="scale" onClick={() => navigate('/compare')}>
+          제품 크기 비교하기
+        </Button>
+      )}
 
       <SectionTitle
         right={
@@ -49,7 +54,7 @@ export function Home() {
         />
       ) : (
         spaces.map((s) => (
-          <Card key={s.id} onClick={() => navigate(`/space/${s.id}/edit`)} label={`${s.name} 공간`}>
+          <Card key={s.id} onClick={() => navigate(`/space/${s.id}`)} label={`${s.name} 공간`}>
             <div className="space-icon">
               <Icon name="home" />
             </div>
@@ -68,7 +73,7 @@ export function Home() {
         <>
           <SectionTitle>최근 비교</SectionTitle>
           {state.comparisons.slice(0, 3).map((c) => (
-            <Card key={c.id}>
+            <Card key={c.id} onClick={() => navigate(`/history/${c.id}`)} label={`${c.product.name} 비교 기록`}>
               <div className="card-main">
                 <span className="card-title">{c.product.name}</span>
                 <span className="card-sub">

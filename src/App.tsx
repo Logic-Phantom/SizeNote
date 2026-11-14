@@ -1,11 +1,17 @@
 // 해시 라우팅: 앱인토스는 dist 정적 파일을 그대로 열기 때문에 서버 경로 재작성에 기대지 않는다.
-// 현재 화면: 홈 · 공간 추가/수정 · 비교 기록 · 설정. 측정 항목·제품·비교·사진 측정 화면은 README '다음 할 일' 참고.
+// 화면: 홈 → 공간 상세 → 측정 대상(사진 보조 측정 포함) / 제품 / 비교·후보 3개 / 비교 기록 / 반입 경로 / 설정
 import { useEffect } from 'react';
 import { createHashRouter, Outlet, RouterProvider, useLocation } from 'react-router-dom';
 import { OverlayProvider, useOverlay } from './components/overlay';
+import { Compare } from './screens/Compare';
 import { History } from './screens/History';
+import { HistoryDetail } from './screens/HistoryDetail';
 import { Home } from './screens/Home';
+import { MeasurementEditor } from './screens/MeasurementEditor';
+import { PassageEditor, PassageList } from './screens/Passages';
+import { ProductEditor, ProductList } from './screens/Products';
 import { Settings } from './screens/Settings';
+import { SpaceDetail } from './screens/SpaceDetail';
 import { SpaceEditor } from './screens/SpaceEditor';
 import { AppProvider, useApp } from './state/store';
 
@@ -32,8 +38,19 @@ const router = createHashRouter([
     children: [
       { path: '/', element: <Home /> },
       { path: '/space/new', element: <SpaceEditor /> },
+      { path: '/space/:id', element: <SpaceDetail /> },
       { path: '/space/:id/edit', element: <SpaceEditor /> },
+      { path: '/space/:spaceId/measure/new', element: <MeasurementEditor /> },
+      { path: '/measure/:id', element: <MeasurementEditor /> },
+      { path: '/products', element: <ProductList /> },
+      { path: '/product/new', element: <ProductEditor /> },
+      { path: '/product/:id', element: <ProductEditor /> },
+      { path: '/compare', element: <Compare /> },
       { path: '/history', element: <History /> },
+      { path: '/history/:id', element: <HistoryDetail /> },
+      { path: '/passages', element: <PassageList /> },
+      { path: '/passage/new', element: <PassageEditor /> },
+      { path: '/passage/:id', element: <PassageEditor /> },
       { path: '/settings', element: <Settings /> },
       { path: '*', element: <Home /> },
     ],

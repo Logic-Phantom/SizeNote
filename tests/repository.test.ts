@@ -111,3 +111,17 @@ describe('비교 기록 스냅샷', () => {
     expect(recordComparison(seeded(), 'nope', 'p1', null, NOW)).toBeNull();
   });
 });
+
+describe('반입 경로 구간', () => {
+  it('추가·수정·삭제와 한도', async () => {
+    const { upsertPassage, deletePassage, LimitError } = await import('../src/domain/records');
+    const seg = { id: 'g1', name: '현관문', kind: 'FRONT_DOOR' as const, widthMm: 900, heightMm: 2000, depthMm: null, turning: false, note: '', updatedAt: '' };
+    let s = upsertPassage(emptyState(), seg, NOW);
+    s = upsertPassage(s, { ...seg, widthMm: 850 }, NOW);
+    expect(s.passages).toHaveLength(1);
+    expect(s.passages[0].widthMm).toBe(850);
+    expect(deletePassage(s, 'g1').passages).toEqual([]);
+    for (let i = 2; i <= LIMITS.passages; i++) s = upsertPassage(s, { ...seg, id: `g${i}` }, NOW);
+    expect(() => upsertPassage(s, { ...seg, id: 'over' }, NOW)).toThrow(LimitError);
+  });
+});

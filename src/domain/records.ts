@@ -2,7 +2,7 @@
 // 사진 키 삭제가 필요한 변경은 Change.dropPhotos로 돌려줘 저장 성공 후에만 지운다(사진·메타데이터 정합성).
 import { compare } from './comparison';
 import type { PassageResult } from './passage';
-import { LIMITS, type AppState, type ComparisonRecord, type Measurement, type Product, type Space } from './types';
+import { LIMITS, type AppState, type ComparisonRecord, type Measurement, type PassageSegment, type Product, type Space } from './types';
 
 export interface Change {
   state: AppState;
@@ -77,6 +77,19 @@ export function deleteProduct(s: AppState, id: string): AppState {
   return { ...s, products: s.products.filter((x) => x.id !== id) };
 }
 
+// ── 반입 경로 ───────────────────────────────────────────
+
+export function upsertPassage(s: AppState, seg: PassageSegment, now: Date = new Date()): AppState {
+  const exists = s.passages.some((x) => x.id === seg.id);
+  if (!exists && s.passages.length >= LIMITS.passages) throw new LimitError('passages');
+  const next = touch(seg, now);
+  return { ...s, passages: exists ? s.passages.map((x) => (x.id === seg.id ? next : x)) : [...s.passages, next] };
+}
+
+export function deletePassage(s: AppState, id: string): AppState {
+  return { ...s, passages: s.passages.filter((x) => x.id !== id) };
+}
+
 // ── 비교 기록 ───────────────────────────────────────────
 
 /** 비교를 실행하고 당시 값을 복사해 기록한다(최신이 앞, 최대 LIMITS.comparisons개) */
@@ -108,8 +121,8 @@ export function deleteComparison(s: AppState, id: string): AppState {
 }
 
 export class LimitError extends Error {
-  readonly what: 'spaces' | 'measurements' | 'products';
-  constructor(what: 'spaces' | 'measurements' | 'products') {
+  readonly what: 'spaces' | 'measurements' | 'products' | 'passages';
+  constructor(what: 'spaces' | 'measurements' | 'products' | 'passages') {
     super(`limit:${what}`);
     this.what = what;
   }

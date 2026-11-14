@@ -50,7 +50,7 @@ export function SpaceEditor() {
       return;
     }
     toast(existing ? '공간을 고쳤어요' : '공간을 만들었어요');
-    navigate('/', { replace: true });
+    navigate(`/space/${space.id}`, { replace: true });
   }
 
   async function remove() {
