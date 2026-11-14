@@ -36,10 +36,10 @@
 
 ## 2. 콘솔 등록 (소유자)
 
-- [ ] [앱인토스 콘솔](https://apps-in-toss.toss.im/)에서 새 미니앱(비게임) 생성
-- [ ] **appName: `sizenote`** — 이미 쓰이면 다른 이름으로 만들고 `apps-in-toss.config.ts`·`src/platform/toss.ts` `APP_NAME` 둘 다 수정 후 다시 빌드
-- [ ] 표시 이름: `사이즈 어때?` (물음표가 안 되면 `사이즈어때`)
-- [ ] 로고: `assets/brand/console-icon-600.png`
+- [x] [앱인토스 콘솔](https://apps-in-toss.toss.im/)에서 새 미니앱(비게임) 생성 (2026-11-14, 입력값은 `docs/CONSOLE_REGISTRATION.md`)
+- [x] **appName: `sizenote`** 확정(수정 불가) 후 다시 빌드
+- [x] 표시 이름: `사이즈 어때?`
+- [x] 로고: `assets/brand/console-icon-600.png`
 - [ ] 한 줄 소개(안): `사기 전에, 우리 집에 맞는지`
 - [ ] 설명(안): `냉장고 자리·세탁기 자리 치수를 저장해 두고, 사려는 가구·가전 크기와 설치 여유를 비교해요. 사진에 줄자나 A4 용지를 함께 찍으면 참고 치수도 계산해요.`
 - [ ] 키워드(안): 치수 측정, 가구 사이즈, 냉장고 자리, 설치 공간, 줄자
@@ -59,7 +59,8 @@ npm test
 npm run build:ait
 ```
 - [x] `sizenote.ait` 생성 확인(2026-11-14, 약 250KB)
-- [ ] 콘솔에 업로드 → QR(샌드박스)로 iOS·Android 토스 앱에서 열기
+- [x] 콘솔에 업로드(임시저장 상태)
+- [ ] 콘솔 '토스앱 테스트'로 iOS·Android 토스 앱에서 열기
 
 ## 4. 실기기 확인 (README 상태표에 기록)
 
