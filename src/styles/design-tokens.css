@@ -1,0 +1,41 @@
+/* 디자인 토큰 — 색·간격·모서리는 여기만 고친다.
+   기준: docs/design/reference-1.webp, reference-2.webp(사용자 제공 시안, 웜 우드 톤) + 기획 §4.2 제안값 */
+:root {
+  --c-bg: #f7f3ed; /* 아이보리 */
+  --c-surface: #fffefc; /* 오프화이트 카드 */
+  --c-surface-2: #f3ede5; /* 눌림·보조 면 */
+  --c-primary: #9a7255; /* 내추럴 우드 브라운(주요 버튼) */
+  --c-primary-strong: #835f45;
+  --c-primary-soft: #f1e7dc;
+  --c-primary-softer: #f8f2eb;
+  --c-text: #29251f; /* 웜 차콜 */
+  --c-text-2: #5a5148;
+  --c-text-3: #81786d;
+  --c-text-4: #b5aca1;
+  --c-line: #e9e1d7;
+
+  /* 판정 상태 — 색만으로 구분하지 않고 항상 글자·아이콘과 함께 쓴다 */
+  --c-fit: #5f7a5a; /* 세이지 그린 */
+  --c-fit-soft: #eaf1e6;
+  --c-review: #b07a27; /* 머스터드 */
+  --c-review-soft: #fbf1df;
+  --c-over: #b85d4d; /* 테라코타 */
+  --c-over-soft: #f8e8e4;
+  --c-danger: #b85d4d;
+  --c-danger-soft: #f8e8e4;
+  --c-tape: #e8b04a; /* 줄자 노랑(측정선·포인트) */
+
+  --r-sm: 10px;
+  --r-md: 14px; /* 입력·버튼 */
+  --r-lg: 20px; /* 카드 */
+  --r-pill: 999px;
+
+  --shadow-card: 0 2px 12px rgba(80, 60, 40, 0.06);
+  --shadow-float: 0 8px 28px rgba(80, 60, 40, 0.14);
+
+  --gutter: 20px;
+  --tabbar-h: 64px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  --font: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', Pretendard, 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+}

@@ -1,0 +1,121 @@
+/* 화면 스타일 — 색·모서리는 design-tokens.css 변수만 쓴다 */
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; background: var(--c-bg); color: var(--c-text); font-family: var(--font); -webkit-text-size-adjust: 100%; }
+body { overscroll-behavior-y: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+input, textarea, select { font: inherit; color: inherit; }
+h1, h2, h3, p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+img { display: block; }
+.muted { color: var(--c-text-3); font-weight: 400; }
+.boot { min-height: 100vh; background: var(--c-bg); }
+
+/* ── 화면 틀 ── */
+.screen { max-width: 480px; margin: 0 auto; min-height: 100vh; min-height: 100dvh; }
+.screen-body { padding: 0 var(--gutter) 28px; display: flex; flex-direction: column; gap: 14px; }
+.screen.has-tabbar .screen-body { padding-bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 28px); }
+.screen.has-footer .screen-body { padding-bottom: calc(96px + var(--safe-bottom)); }
+.screen-footer {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; max-width: 480px; margin: 0 auto;
+  padding: 12px var(--gutter) calc(12px + var(--safe-bottom));
+  background: linear-gradient(to top, var(--c-bg) 70%, rgba(247, 243, 237, 0));
+}
+
+.header { display: grid; grid-template-columns: 48px 1fr 48px; align-items: center; height: 56px; margin: 0 -8px; }
+.header-title { font-size: 18px; font-weight: 700; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.header-side { display: flex; align-items: center; }
+.header-right { justify-content: flex-end; }
+.icon-btn { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px; color: var(--c-text); }
+.icon-btn:active { background: var(--c-surface-2); }
+
+/* ── 탭바(시안 하단 홈·비교·설정) ── */
+.tabbar {
+  position: fixed; left: 50%; transform: translateX(-50%); bottom: 0; z-index: 20;
+  width: 100%; max-width: 480px; height: calc(var(--tabbar-h) + var(--safe-bottom)); padding-bottom: var(--safe-bottom);
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  background: var(--c-surface); border-top: 1px solid var(--c-line); border-radius: 20px 20px 0 0; box-shadow: 0 -4px 20px rgba(80, 60, 40, 0.05);
+}
+.tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: var(--c-text-3); text-decoration: none; font-size: 11px; font-weight: 600; }
+.tab.active { color: var(--c-primary); }
+
+/* ── 버튼 ── */
+.btn {
+  width: 100%; height: 54px; border-radius: var(--r-pill); font-size: 17px; font-weight: 700;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px; transition: transform 0.08s, background 0.15s;
+}
+.btn:active:not(:disabled) { transform: scale(0.98); }
+.btn:disabled { opacity: 0.5; cursor: default; }
+.btn-primary { background: var(--c-primary); color: #fff; box-shadow: 0 6px 16px rgba(154, 114, 85, 0.28); }
+.btn-primary:active:not(:disabled) { background: var(--c-primary-strong); }
+.btn-soft { background: var(--c-primary-soft); color: var(--c-primary-strong); }
+.btn-ghost { background: transparent; color: var(--c-text-3); }
+.btn-danger, .btn-danger-solid { background: var(--c-danger); color: #fff; }
+.btn-sm { height: 40px; font-size: 14px; width: auto; padding: 0 16px; }
+
+/* ── 카드·행 ── */
+.card { background: var(--c-surface); border-radius: var(--r-lg); box-shadow: var(--shadow-card); padding: 16px; display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; }
+.card-btn:active { transform: scale(0.99); background: var(--c-primary-softer); }
+.card-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.card-title { font-size: 16px; font-weight: 700; }
+.card-sub { font-size: 13px; color: var(--c-text-3); }
+.rows { background: var(--c-surface); border-radius: var(--r-lg); box-shadow: var(--shadow-card); overflow: hidden; }
+.row { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 56px; padding: 0 16px; text-align: left; border-bottom: 1px solid var(--c-line); }
+.row:last-child { border-bottom: 0; }
+button.row:active { background: var(--c-surface-2); }
+.row-label { flex: 1; font-size: 16px; font-weight: 500; }
+.row-value { color: var(--c-text-3); font-size: 15px; text-align: right; }
+.row-danger .row-label { color: var(--c-danger); }
+
+/* ── 안내·빈 상태 ── */
+.notice { display: flex; gap: 10px; align-items: flex-start; padding: 14px 16px; border-radius: var(--r-md); font-size: 13px; line-height: 1.55; }
+.notice svg { margin-top: 1px; }
+.notice-info { background: var(--c-primary-softer); color: var(--c-text-2); }
+.notice-info svg { color: var(--c-primary); }
+.notice-warn { background: var(--c-review-soft); color: #74501a; }
+.hint { font-size: 12.5px; color: var(--c-text-3); line-height: 1.5; }
+.section-title { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+.section-title h2 { font-size: 17px; font-weight: 700; }
+.empty { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 40px 0 20px; text-align: center; }
+.empty-icon { width: 64px; height: 64px; border-radius: 20px; background: var(--c-primary-soft); display: grid; place-items: center; margin-bottom: 4px; }
+.empty-title { font-size: 17px; font-weight: 700; }
+.empty-desc { color: var(--c-text-3); font-size: 14px; line-height: 1.5; margin-bottom: 8px; white-space: pre-line; }
+
+/* ── 판정·출처 배지(색 + 글자 + 아이콘) ── */
+.status { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: var(--r-pill); font-size: 13px; font-weight: 700; }
+.status-fit { background: var(--c-fit-soft); color: var(--c-fit); }
+.status-over { background: var(--c-over-soft); color: var(--c-over); }
+.status-review { background: var(--c-review-soft); color: var(--c-review); }
+.origin { display: inline-block; padding: 2px 8px; border-radius: var(--r-pill); font-size: 11px; font-weight: 700; background: var(--c-surface-2); color: var(--c-text-2); }
+.origin-photo { background: #fdf3df; color: #8a5f12; }
+.origin-unknown { background: var(--c-over-soft); color: var(--c-over); }
+
+/* ── 홈 ── */
+.home-head { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+.brand { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 800; color: var(--c-primary-strong); }
+.home-hero { padding: 6px 0 4px; }
+.home-hero h2 { font-size: 24px; font-weight: 800; line-height: 1.38; letter-spacing: -0.4px; }
+.home-hero p { margin-top: 8px; color: var(--c-text-3); font-size: 14px; }
+.space-icon { width: 48px; height: 48px; border-radius: 14px; background: var(--c-primary-soft); color: var(--c-primary); display: grid; place-items: center; flex-shrink: 0; }
+
+/* ── 입력 폼 ── */
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field-label { font-size: 14px; font-weight: 600; color: var(--c-text-2); }
+.input { height: 52px; padding: 0 16px; border-radius: var(--r-md); border: 1px solid var(--c-line); background: var(--c-surface); font-size: 16px; outline: none; }
+.input:focus { border-color: var(--c-primary); }
+textarea.input { height: auto; min-height: 88px; padding: 14px 16px; resize: none; line-height: 1.5; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { height: 38px; padding: 0 16px; border-radius: var(--r-pill); background: var(--c-surface); color: var(--c-text-2); font-size: 14px; font-weight: 600; border: 1px solid var(--c-line); white-space: nowrap; }
+.chip.active { background: var(--c-primary); border-color: var(--c-primary); color: #fff; }
+.error-text { color: var(--c-danger); font-size: 13px; }
+
+/* ── 오버레이(토스트·확인) ── */
+.toast {
+  position: fixed; left: 50%; bottom: calc(96px + var(--safe-bottom)); transform: translateX(-50%); z-index: 60;
+  max-width: calc(100% - 40px); padding: 12px 18px; border-radius: var(--r-pill); background: rgba(41, 37, 31, 0.92); color: #fff; font-size: 14px; font-weight: 600;
+}
+.dim { position: fixed; inset: 0; z-index: 50; background: rgba(41, 37, 31, 0.45); display: grid; place-items: center; padding: 24px; }
+.dialog { width: 100%; max-width: 360px; background: var(--c-surface); border-radius: 22px; padding: 24px 20px 18px; box-shadow: var(--shadow-float); }
+.dialog h2 { font-size: 18px; font-weight: 700; }
+.dialog p { margin-top: 8px; color: var(--c-text-2); font-size: 14.5px; line-height: 1.55; }
+.dialog-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 20px; }
+.dialog-actions .btn { height: 48px; font-size: 16px; }
